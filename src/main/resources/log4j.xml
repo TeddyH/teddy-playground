@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "http://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/xml/doc-files/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="exconsole" class="org.apache.log4j.AsyncAppender">
+        <param name="Threshold" value="DEBUG" />
+        <param name="BufferSize" value="500" />
+        <appender-ref ref="console" /> 
+    </appender>
+    
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <param name="Encoding" value="UTF-8" />
+        <param name="Threshold" value="DEBUG" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH\:mm\:ss} - %c{3}]\t%m%n" />
+        </layout>
+    </appender>
+
+    <appender name="exdailyRollingFile" class="org.apache.log4j.AsyncAppender">
+        <param name="Threshold" value="DEBUG" />
+        <param name="BufferSize" value="500" />
+        <appender-ref ref="dailyRollingFile" /> 
+    </appender> 
+    <appender name="dailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="Encoding" value="UTF-8" />
+        <param name="Threshold" value="DEBUG" />
+        <param name="File" value="D:\\proj\\ntstore\\log\\omp\\svr2\\serverlog\\devpoc.log" />
+        <param name="Append" value="true" />
+        <param name="DatePattern" value=".yyyy-MM-dd" />        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH\:mm\:ss} - %c{3}]\t%m%n" />
+        </layout>
+    </appender>
+    
+    <root>
+        <level value="DEBUG" />
+        <appender-ref ref="console" />
+    </root>
+    
+</log4j:configuration>
