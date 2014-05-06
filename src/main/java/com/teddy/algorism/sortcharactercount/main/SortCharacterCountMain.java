@@ -3,24 +3,36 @@ package com.teddy.algorism.sortcharactercount.main;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.teddy.algorism.sortcharactercount.biz.SortCharacterCount;
+import com.teddy.algorism.sortcharactercount.load.LoadEditorial;
+import com.teddy.algorism.sortcharactercount.load.impl.FileLoadEditorial;
+import com.teddy.algorism.sortcharactercount.load.impl.StringBufferLoadEditorial;
+import com.teddy.algorism.sortcharactercount.process.SortCharacterCountProcess;
 
 public class SortCharacterCountMain {
 	
 	private static final Logger logger = LoggerFactory.getLogger(SortCharacterCountMain.class);
 	
-	private SortCharacterCount sortCharacterCount = null;
+	private SortCharacterCountProcess sortCharacterCount = null;
+	
+	private LoadEditorial loadEditorial = null;
 	
 	public SortCharacterCountMain() {
-		sortCharacterCount = new SortCharacterCount();
+		sortCharacterCount = new SortCharacterCountProcess();
+		
 	}
 
 	public void initialize() {
 		logger.info("## RUN MAIN! ##");
+		
+		// use StringBuffer
+		loadEditorial = new StringBufferLoadEditorial();
+		// 
+		//loadEditorial = new FileLoadEditorial();
+		
 	}
 	
 	public void doit() {
-		sortCharacterCount.doHashMapSort();
+		sortCharacterCount.doHashMapSort(loadEditorial);
 	}
 	
 	public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package com.teddy.algorism.sortcharactercount.biz;
+package com.teddy.algorism.sortcharactercount.process;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.teddy.algorism.sortcharactercount.load.LoadEditorial;
 
 /**
  * 신문 사설을 읽어와 글자별 카운트를 내림차순으로 정렬해라.
@@ -23,9 +25,9 @@ import org.slf4j.LoggerFactory;
  * @author teddy
  *
  */
-public class SortCharacterCount {
+public class SortCharacterCountProcess {
 	
-	private static final Logger logger = LoggerFactory.getLogger(SortCharacterCount.class);
+	private static final Logger logger = LoggerFactory.getLogger(SortCharacterCountProcess.class);
 	
 	HashMap<String, Integer> characterCountMap;
 	
@@ -37,9 +39,9 @@ public class SortCharacterCount {
 		return characterCountMap;
 	}
 	
-	public void doHashMapSort() {
+	public void doHashMapSort(LoadEditorial loadEditorial) {
 		
-		String editorial = getEditorial();
+		String editorial = loadEditorial.getEditorial();
 	
 		analysisCharacterCount(editorial);
 		

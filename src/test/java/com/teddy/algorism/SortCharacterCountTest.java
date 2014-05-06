@@ -9,14 +9,14 @@ import static org.hamcrest.CoreMatchers.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.teddy.algorism.sortcharactercount.biz.SortCharacterCount;
+import com.teddy.algorism.sortcharactercount.process.SortCharacterCountProcess;
 
 
 public class SortCharacterCountTest {
 	
 	//private static final Logger logger = LoggerFactory.getLogger(SortCharacterCountTest.class);
 	
-	public SortCharacterCount sortCharacterCount = new SortCharacterCount();
+	public SortCharacterCountProcess sortCharacterCount = new SortCharacterCountProcess();
 
 	@Before
 	public void setUp() throws Exception {
