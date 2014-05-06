@@ -2,6 +2,7 @@ package com.teddy.algorism.sortduplicationlist.process;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -25,7 +26,8 @@ public class SortDuplicationListProcess {
 	public void doProcess() {
 		List<Integer> integers = loadData();
 		List<Integer> uniqueIntegers = findUniqueData(integers);
-		uniqueIntegers = sort(uniqueIntegers);
+//		uniqueIntegers = ascendingSort(uniqueIntegers);
+		uniqueIntegers = descendingSort(uniqueIntegers);
 		
 		printData(uniqueIntegers);
 	}
@@ -62,8 +64,13 @@ public class SortDuplicationListProcess {
 		return new ArrayList<Integer>(uniqueIntegers);
 	}
 	
-	public List<Integer> sort(List<Integer> uniqueData) {
+	public List<Integer> ascendingSort(List<Integer> uniqueData) {
 		Collections.sort(uniqueData);
+		return uniqueData;
+	}
+	
+	public List<Integer> descendingSort(List<Integer> uniqueData) {
+		Collections.sort(uniqueData, new DescCompare());
 		return uniqueData;
 	}
 	
@@ -71,5 +78,15 @@ public class SortDuplicationListProcess {
 		for (int i = 0; i < uniqueIntegers.size(); i++) {
 			logger.info("IDX [{}] = [{}] ", i, uniqueIntegers.get(i));
 		}
+	}
+		
+	class DescCompare implements Comparator<Integer> {
+
+		@Override
+		public int compare(Integer arg1, Integer arg2) {
+			
+			return arg2.compareTo(arg1);
+		}
+		
 	}
 }
