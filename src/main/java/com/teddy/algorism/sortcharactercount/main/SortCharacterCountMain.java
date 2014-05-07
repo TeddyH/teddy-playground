@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.teddy.algorism.sortcharactercount.load.LoadEditorial;
-import com.teddy.algorism.sortcharactercount.load.impl.FileLoadEditorial;
 import com.teddy.algorism.sortcharactercount.load.impl.StringBufferLoadEditorial;
 import com.teddy.algorism.sortcharactercount.process.SortCharacterCountProcess;
 
@@ -18,7 +17,6 @@ public class SortCharacterCountMain {
 	
 	public SortCharacterCountMain() {
 		sortCharacterCount = new SortCharacterCountProcess();
-		
 	}
 
 	public void initialize() {
