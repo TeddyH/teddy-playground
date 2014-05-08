@@ -25,7 +25,6 @@ public class ThreeSixNineProcessTest {
 		assertThat(clapping, notNullValue());
 
 		logger.info("{}", clapping);
-	
 	}
 
 }
