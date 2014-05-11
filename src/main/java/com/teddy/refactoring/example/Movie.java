@@ -1,4 +1,4 @@
-package com.teddy.refactoring.example.old;
+package com.teddy.refactoring.example;
 
 /**
  * @author Teddy

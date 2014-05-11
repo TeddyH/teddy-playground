@@ -1,4 +1,4 @@
-package com.teddy.refactoring.example.old;
+package com.teddy.refactoring.example;
 
 import java.util.Enumeration;
 import java.util.Vector;
@@ -34,7 +34,7 @@ public class Customer {
 			double thisAmount = 0;
 			Rental each = rentals.nextElement();
 			
-			// 비디오 종류별 대여로 계산
+			// 비디오 종류별 대여료 계산
 			switch (each.getMovie().getPriceCode()) {
 			case Movie.REGULAR:
 				thisAmount += 2;
@@ -64,7 +64,7 @@ public class Customer {
 			}
 			
 			// 이번에 대여하는 비디오 정보와 대여로를 출력
-			result += "\t" + each.getMovie().getTitle() + "\t" +
+			result += "\n\t" + each.getMovie().getTitle() + "\t" +
 					String.valueOf(thisAmount) + "\n";
 			// 현재까지 누적된 총 대여료
 			totalAmount += thisAmount;
