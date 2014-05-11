@@ -30,7 +30,7 @@ public class Customer {
 		
 		while (rentals.hasMoreElements()) {
 			Rental each = rentals.nextElement();
-
+			
 			// 이번에 대여하는 비디오 정보와 대여로를 출력
 			resultMsg += "\n\t" + each.getMovie().getTitle() + "\t" +
 					String.valueOf(each.getCharge()) + "\n";
@@ -44,24 +44,24 @@ public class Customer {
 	
 	private double getTotalCharge() {
 		double result = 0;
+		
 		Enumeration<Rental> rentals = _rentals.elements();
 		while (rentals.hasMoreElements()) {
 			Rental each = rentals.nextElement();
 			result += each.getCharge();
 		}
-		
 		return result;
 	}
 	
 	private int getTotalFrequentRenterPoints() {
 		int result = 0;
+		
 		Enumeration<Rental> rentals = _rentals.elements();
 		while (rentals.hasMoreElements()) {
 			Rental each = rentals.nextElement();
 			result += each.getFrequentRenterPoints();
 		}
-		
-		return result;
+		return result;		
 	}
 
 }
