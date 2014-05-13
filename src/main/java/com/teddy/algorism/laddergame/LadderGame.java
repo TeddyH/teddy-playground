@@ -8,25 +8,46 @@ public class LadderGame {
 	
 	public LadderGame(List<String> userInput) {
 		this.ladderInfo = userInput;
+		makeLadderGameBoard();
 		makeLadderGame();
 	}
 	
-	private void makeLadderGame() {
+	private void makeLadderGameBoard() {
 		for (String linePosition : ladderInfo) {
 			String[] position = linePosition.split(" ");
 			isMaxHorizon(Integer.parseInt(position[0]));
 			isMaxVertical(Integer.parseInt(position[1]));
 		}
 		
+		ladderGameBoard = new int[maxHorizon][maxVertical];
 	}
 	
-	private int[][] ladderGameboard;
+	private void makeLadderGame() {
+		for (String linePosition : ladderInfo) {
+			String[] position = linePosition.split(" ");
+			ladderGameBoard[Integer.parseInt(position[0]) - 1][Integer.parseInt(position[1]) - 1] = 1000;
+		}
+	}
 	
-	private int horizonPosition = 0;
-	private int verticalPosition = 1;
-	
+	private int[][] ladderGameBoard;
 	private int maxHorizon = -1;
 	private int maxVertical = -1;
+	
+	public int[][] getLadderGameBoard() {
+		return ladderGameBoard;
+	}
+	
+	
+	
+	public int getMaxHorizon() {
+		return maxHorizon;
+	}
+
+	public int getMaxVertical() {
+		return maxVertical;
+	}
+
+	
 
 	
 	public void setMaxHorizon(int maxHorizon) {
@@ -48,11 +69,4 @@ public class LadderGame {
 		}
 	}
 	
-	public void goHorizon() {
-		horizonPosition++;
-	}
-	
-	public void goVertical() {
-		verticalPosition++;
-	}
 }

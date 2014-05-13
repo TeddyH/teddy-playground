@@ -41,6 +41,19 @@ public class LadderGameTest {
 		ladderInfo.add("7 5");
 		
 		LadderGame ladderGame = new LadderGame(ladderInfo);
+		int[][] gameBoard = ladderGame.getLadderGameBoard();
+		
+		for (int horizon = 0; horizon < gameBoard.length; horizon++) {
+			int[] boardVertical = gameBoard[horizon];
+			
+			StringBuffer verticalString = new StringBuffer();
+			for (int vertical = 0; vertical < boardVertical.length; vertical++) {
+				verticalString.append(gameBoard[horizon][vertical]).append("\t");
+			}
+			
+			logger.info("gameBoard[{}] : {}", horizon, verticalString.toString());
+		}
+		
 	}
 
 }
