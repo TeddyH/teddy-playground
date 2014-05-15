@@ -1,6 +1,7 @@
 package com.teddy.algorism.laddergame;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,31 @@ public class LadderGameTest {
 
 	@Test
 	public void testInputLadderInfo() {
+		
+		LadderGame ladderGame = new LadderGame(getInputData());
+		
+		ladderGame.info();
+		
+		assertThat(ladderGame.getMaxHorizon(), equalTo(12));
+		assertThat(ladderGame.getMaxVertical(), equalTo(6));
+	}
+	
+	@Test
+	public void testPlayGame() {
+		LadderGame ladderGame = new LadderGame(getInputData());
+		PlayLadderGame playLadderGame = new PlayLadderGame(ladderGame);
+		
+		ladderGame.info();
+		
+		assertThat(ladderGame.getMaxHorizon(), equalTo(12));
+		assertThat(ladderGame.getMaxVertical(), equalTo(6));
+		
+		assertThat(playLadderGame.choice("6"), equalTo("3"));
+		assertThat(playLadderGame.choice("1"), equalTo("6"));
+		assertThat(playLadderGame.choice("3"), equalTo("5"));
+	}
+	
+	private List<String> getInputData() {
 		List<String> ladderInfo = new ArrayList<String>();
 		ladderInfo.add("1 1");
 		ladderInfo.add("6 1");
@@ -40,20 +66,7 @@ public class LadderGameTest {
 		ladderInfo.add("5 5");
 		ladderInfo.add("7 5");
 		
-		LadderGame ladderGame = new LadderGame(ladderInfo);
-		int[][] gameBoard = ladderGame.getLadderGameBoard();
-		
-		for (int horizon = 0; horizon < gameBoard.length; horizon++) {
-			int[] boardVertical = gameBoard[horizon];
-			
-			StringBuffer verticalString = new StringBuffer();
-			for (int vertical = 0; vertical < boardVertical.length; vertical++) {
-				verticalString.append(gameBoard[horizon][vertical]).append("\t");
-			}
-			
-			logger.info("gameBoard[{}] : {}", horizon, verticalString.toString());
-		}
-		
+		return ladderInfo;
 	}
 
 }

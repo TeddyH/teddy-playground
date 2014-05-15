@@ -2,9 +2,16 @@ package com.teddy.algorism.laddergame;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LadderGame {
 	
+	private static final Logger logger = LoggerFactory.getLogger(LadderGame.class);
+	
 	private List<String> ladderInfo;
+	
+	public static int EXPRESSION = 1000000;
 	
 	public LadderGame(List<String> userInput) {
 		this.ladderInfo = userInput;
@@ -19,13 +26,13 @@ public class LadderGame {
 			isMaxVertical(Integer.parseInt(position[1]));
 		}
 		
-		ladderGameBoard = new int[maxHorizon][maxVertical];
+		ladderGameBoard = new int[maxHorizon+=2][++maxVertical];
 	}
 	
 	private void makeLadderGame() {
 		for (String linePosition : ladderInfo) {
 			String[] position = linePosition.split(" ");
-			ladderGameBoard[Integer.parseInt(position[0]) - 1][Integer.parseInt(position[1]) - 1] = 1000;
+			ladderGameBoard[Integer.parseInt(position[0])][Integer.parseInt(position[1]) - 1] = LadderGame.EXPRESSION;
 		}
 	}
 	
@@ -37,8 +44,6 @@ public class LadderGame {
 		return ladderGameBoard;
 	}
 	
-	
-	
 	public int getMaxHorizon() {
 		return maxHorizon;
 	}
@@ -46,9 +51,6 @@ public class LadderGame {
 	public int getMaxVertical() {
 		return maxVertical;
 	}
-
-	
-
 	
 	public void setMaxHorizon(int maxHorizon) {
 		this.maxHorizon = maxHorizon;
@@ -69,4 +71,16 @@ public class LadderGame {
 		}
 	}
 	
+	public void info() {
+		for (int horizon = 0; horizon < ladderGameBoard.length; horizon++) {
+			int[] boardVertical = ladderGameBoard[horizon];
+			
+			StringBuffer verticalString = new StringBuffer();
+			for (int vertical = 0; vertical < boardVertical.length; vertical++) {
+				verticalString.append(ladderGameBoard[horizon][vertical]).append("\t");
+			}
+			
+			logger.info("gameBoard[{}] : {}", horizon, verticalString.toString());
+		}
+	}
 }
