@@ -16,8 +16,6 @@ public class LadderGameTest {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LadderGameTest.class);
 
-	private LadderGameController ladderGameProcess = new LadderGameController();
-	
 	@Before
 	public void setUp() throws Exception {
 	}

@@ -5,13 +5,13 @@ import org.slf4j.LoggerFactory;
 
 
 public class PlayLadderGame {
-	
+
+	// 위 그림은 커피 내기를 할 때 유용한 사다리 게임입니다.
+	// 잘 생각해 보면, 사다리 게임은 가로선을 (높이, 왼쪽의 세로줄 번호) 형태로 나타낼 수 있습니다.
+	// 예컨대, 위 사다리 게임은 (1, 1), (6, 1), (9, 1), (3, 2), (5, 2) ....와 같이 표현할 수 있습니다.
+	//
+	// 아래 예제와 같이, 사다리 게임의 데이터와 출발 지점을 입력하면 도착 지점을 출력하는 프로그램을 작성하세요.
 	private static final Logger logger = LoggerFactory.getLogger(PlayLadderGame.class);
-	
-	public static final String LEFT = "LEFT";
-	public static final String RIGHT = "RIGHT";
-	
-	public enum MOVE_VERTICAL {LEFT, RIGHT};
 	
 	public LadderGame board;
 
@@ -23,7 +23,6 @@ public class PlayLadderGame {
 		this.horizonPosition = 0;
 	}
 
-	private MOVE_VERTICAL verticalMoveWay = MOVE_VERTICAL.RIGHT;
 	
 	public PlayLadderGame(LadderGame board) {
 		this.board = board;
@@ -35,26 +34,21 @@ public class PlayLadderGame {
 	public void moveLeftVertical() {
 		verticalPosition--;	
 	}
-	public void goRightVertical() {
+	public void moveRightVertical() {
 		verticalPosition++;
 	}
 	
-	public boolean isAvailableVerticalMoveWay() {
-		return ((verticalPosition == board.getMaxVertical() - 1) || (verticalPosition == 0)) 
-				? false : true;
-	}
-
 	public String choice(String verticalNumber) {
 		int[][] ladderGameBoard = board.getLadderGameBoard();
 		setVerticalPosition(Integer.parseInt(verticalNumber) - 1);
-		int number = 1; 
+		int number = 0; 
 		
 		while (board.getMaxHorizon() > horizonPosition) {
-			logger.info("[{}] position info [{}][{}] ", new Object[] {number++, horizonPosition, verticalPosition});
+			logger.info("[{}] position info [{}][{}] ", new Object[] {++number, horizonPosition, verticalPosition});
 			
 			if ((verticalPosition != board.getMaxVertical())
 					&& ladderGameBoard[horizonPosition][verticalPosition] == LadderGame.EXPRESSION) {
-				goRightVertical();
+				moveRightVertical();
 			} else if ((verticalPosition != 0)
 					&& ladderGameBoard[horizonPosition][verticalPosition - 1] == LadderGame.EXPRESSION) {
 				moveLeftVertical();
